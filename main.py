@@ -42,49 +42,26 @@ def parseMovieIMDB(movieName):
 
 
 def getNames():
-    content = []
-    for line in open("filmlist.txt","r"):
-        content.append(line.strip())
-    return content
+    with open("filmlist.txt","r") as o:
+        for l in o:
+            yield l.strip()
 
 def display(header,results):
-    for column in header:
-        print(column+"\t",end='')
-    print()
-    for line in results:
-        for column in line:
-            print(column+"\t",end='')
-        print()
+    print('\t'.join(header))
+    print('\n'.join('\t'.join(result) for result in results))
 
 def printToFile(header, results, filename="results.csv"):
-    o = open(filename,"w+")
-    first = True
-    for column in header:
-        if first:
-            first=False
-        else:
-            o.write(";")
-        o.write(column)
-    o.write("\n")
-    for line in results:
-        first = True
-        for column in line:
-            if first:
-                first=False
-            else:
-                o.write(";")
-            o.write(column)
-        o.write("\n")
+    with open(filename,"w+") as o:
+        o.write(f"{';'.join(header)}\n")
+        o.write('\n'.join(';'.join(result) for result in results).replace(".", ","))
 
 def main():
-    content = getNames()
     header = ["Title","IMDb"]
-    results = []
-    for title in progressbar.progressbar(content):
-        line = [title,parseMovieIMDB(title)]
-        results = results + [line]
+    results = [ [title,parseMovieIMDB(title)] for title in progressbar.progressbar(list(getNames()))]
+    print(results)
     results.sort(key=lambda x: x[1],reverse=True)
     display(header,results)
     printToFile(header,results)
 
-main()
+if __name__ == '__main__':
+    main()
