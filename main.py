@@ -65,7 +65,7 @@ def printToFile(header, results, filename="results.csv"):
         else:
             o.write(";")
         o.write(column)
-    o.write("\r\n")
+    o.write("\n")
     for line in results:
         first = True
         for column in line:
@@ -74,7 +74,7 @@ def printToFile(header, results, filename="results.csv"):
             else:
                 o.write(";")
             o.write(column)
-        o.write("\r\n")
+        o.write("\n")
 
 def main():
     content = getNames()
