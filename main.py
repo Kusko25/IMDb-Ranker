@@ -56,7 +56,7 @@ def display(header,results):
             print(column+"\t",end='')
         print()
 
-def printToFile(header, results, filename="results.txt"):
+def printToFile(header, results, filename="results.csv"):
     o = open(filename,"w+")
     first = True
     for column in header:
