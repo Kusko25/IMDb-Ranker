@@ -6,40 +6,10 @@ from bs4 import BeautifulSoup
 
 
 def parseMovieIMDB(movieName):
-    url = re.sub(r' ',r'+',movieName)
-    url = "https://www.imdb.com/find?q=" + url
-    page = urlopen(url)
-    soup = BeautifulSoup(page,'html.parser')
+    url = "https://www.imdb.com/find?q=" + re.sub(r' ',r'+',movieName)
+    soup = BeautifulSoup(urlopen(url),'html.parser')
     link = soup.find(attrs={'class': 'result_text'}).find('a').get('href')
-    page = urlopen("https://www.imdb.com" + link)
-    soup = BeautifulSoup(page,'html.parser')
-    rating = soup.find(attrs={'itemprop':'ratingValue'}).get_text()
-    return rating
-
-# def parseMovieGoogle(movieName):
-#     url = re.sub(r' ',r'+',movieName)
-#     url = "https://www.google.com/search?q=" + url
-#     opener = urllib.request.build_opener()
-#     opener.addheaders = [('User-Agent', 'Mozilla/5.0')]
-#     page = opener.open(url)
-#     soup = BeautifulSoup(page,'html.parser')
-#     print(soup.find(attrs={'class': 'srBp4 Vrkhme'}))
-#     # rating = re.search(r'\d{1,3} %',link)
-#     # return rating
-#
-# def parseMovieRoTo(movieName):
-#     url = re.sub(r' ',r'%20',movieName)
-#     url = "https://www.rottentomatoes.com/search/?search=" + url
-#     page = urlopen(url)
-#     soup = BeautifulSoup(page,'html.parser')
-#     soup = soup.find(attrs={'id': 'movieSection'}).find('ul',{'class':'results_ul'})
-#     matchedString = ""
-#     while matchedString != movieName:
-#         rating = soup.findNext('span',{'class':'tMeterScore'}).get_text()
-#         matchedString = soup.findNext('a',{'class':'unstyled articleLink'}).get_text()
-#     print(matchedString + "|" + rating)
-#     return rating
-
+    return BeautifulSoup(urlopen("https://www.imdb.com" + link),'html.parser').find(attrs={'itemprop':'ratingValue'}).get_text()
 
 def getNames():
     with open("filmlist.txt","r") as o:
@@ -58,7 +28,6 @@ def printToFile(header, results, filename="results.csv"):
 def main():
     header = ["Title","IMDb"]
     results = [ [title,parseMovieIMDB(title)] for title in progressbar.progressbar(list(getNames()))]
-    print(results)
     results.sort(key=lambda x: x[1],reverse=True)
     display(header,results)
     printToFile(header,results)
