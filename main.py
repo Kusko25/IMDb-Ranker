@@ -3,6 +3,7 @@ import progressbar
 from urllib.request import urlopen
 import urllib.request
 from bs4 import BeautifulSoup
+from prettytable import  PrettyTable
 
 
 def parseMovieIMDB(movieName):
@@ -17,8 +18,10 @@ def getNames():
             yield l.strip()
 
 def display(header,results):
-    print('\t'.join(header))
-    print('\n'.join('\t'.join(result) for result in results))
+    table = PrettyTable()
+    table.field_names = header
+    [table.add_row(result) for result in results]
+    print(table)
 
 def printToFile(header, results, filename="results.csv"):
     with open(filename,"w+") as o:

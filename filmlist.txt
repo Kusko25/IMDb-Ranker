@@ -1,21 +1,11 @@
-Iron Man
-The Incredible Hulk
-Iron Man 2
-Thor
-Captain America: The First Avenger
-Marvel's The Avengers
-Iron Man 3
-Thor: The Dark World
-Captain America: The Winter Soldier
-Guardians of the Galaxy
-Avengers: Age of Ultron
-Ant-Man
-Captain America: Civil War
-Doctor Strange
-Guardians of the Galaxy Vol. 2
-Spider-Man: Homecoming
-Thor: Ragnarok
-Black Panther
-Avengers: Infinity War
-Ant-Man and the Wasp
-Captain Marvel
+Star Wars: Episode IV - A New Hope (1977)
+Solo: A Star Wars Story (2018)
+Star Wars: Episode VIII - The Last Jedi (2017)
+Rogue One: A Star Wars Story (2016)
+Star Wars: The Force Awakens (2015)
+Star Wars: The Clone Wars (2008)
+Star Wars: Episode I - The Phantom Menace (1999)
+Star Wars: Episode V - The Empire Strikes Back (1980)
+Star Wars: Episode III - Revenge of the Sith (2005)
+Star Wars: Episode II - Attack of the Clones (2002)
+Star Wars: Episode VI - Return of the Jedi (1983) 
